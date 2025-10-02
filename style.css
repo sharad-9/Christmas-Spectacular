@@ -1,0 +1,177 @@
+/* Base styles */
+        :root {
+            --primary-red: #B91C1C; /* Tailwind red-700 */
+            --primary-green: #059669; /* Tailwind emerald-600 */
+            --glass-bg: rgba(255, 255, 255, 0.15);
+            --glass-border: rgba(255, 255, 255, 0.3);
+            --shadow-color: rgba(0, 0, 0, 0.5);
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0d1117; /* Dark background */
+            overflow-x: hidden;
+            color: white;
+            /* Increased padding to ensure the fixed top nav and its garland are fully visible */
+            padding-top: 110px; 
+        }
+
+        /* --- Glassmorphism Styles --- */
+        .glass-card {
+            backdrop-filter: blur(16px) saturate(180%);
+            -webkit-backdrop-filter: blur(16px) saturate(180%);
+            background-color: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px 0 var(--shadow-color);
+            transform-style: preserve-3d;
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* Adding a subtle 3D lift on hover (Polymorphism element) */
+        .glass-card:hover {
+            transform: translateY(-5px) rotateX(2deg) rotateY(2deg);
+            box-shadow: 0 12px 40px 0 rgba(255, 255, 255, 0.15), 0 0 0 5px var(--primary-red);
+        }
+
+        /* --- Parallax Container Setup --- */
+        .parallax-section {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            /* CRITICAL: Perspective must be on the scrolling container for a true parallax effect */
+            perspective: 1px; 
+            overflow-x: hidden;
+        }
+
+        /* Parallax Layer Styles */
+        .parallax-layer {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            pointer-events: none;
+            will-change: transform;
+        }
+
+        /* Deep Background - Slowest (Z= -2) */
+        .layer-deep-bg {
+            /* Transform applies the Z depth, making it appear far away */
+            transform: translateZ(-2px) scale(3); 
+            background: linear-gradient(180deg, #100d23 0%, #151a2d 100%);
+        }
+
+        /* Midground - Medium (Z= -1) */
+        .layer-mid-bg {
+            /* Transform applies the Z depth */
+            transform: translateZ(-1px) scale(2);
+        }
+
+        /* Foreground - Standard (Z= 0) */
+        .layer-foreground {
+            transform: translateZ(0);
+        }
+
+        /* --- Complex Snow Animation (Pure CSS Keyframes) --- */
+        .snow-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 1000;
+        }
+
+        /* The falling keyframe animation */
+        @keyframes falling {
+            0% { opacity: 0; transform: translateY(-100%) translateX(0); }
+            50% { opacity: 1; transform: translateY(50vh) translateX(5vw); }
+            100% { opacity: 0.5; transform: translateY(100vh) translateX(-5vw); }
+        }
+
+        .snow {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            animation: falling linear infinite;
+        }
+
+        /* --- Menu Bar (Fixed: Standard Rounded Shape, Garland Added) --- */
+        .polymorphic-menu {
+            border-radius: 0 0 15px 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+            position: relative; 
+            padding-bottom: 30px; 
+        }
+        
+        /* --- Hanging Garland Decoration (Complex CSS Box-Shadow) --- */
+        .polymorphic-menu::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 10px; 
+            background: var(--primary-green);
+            z-index: 50; 
+            border-radius: 0 0 15px 15px;
+            
+            /* Box shadow creates the hanging ornaments */
+            box-shadow:
+                20px 20px 0 5px var(--primary-red),
+                25px 30px 0 5px #FCD34D, 
+                100px 20px 0 5px var(--primary-green),
+                105px 30px 0 5px var(--primary-red),
+                50% 20px 0 5px #FCD34D, 
+                calc(50% + 5px) 30px 0 5px var(--primary-green),
+                calc(100% - 120px) 20px 0 5px var(--primary-red),
+                calc(100% - 115px) 30px 0 5px #FCD34D,
+                calc(100% - 30px) 20px 0 5px var(--primary-green),
+                calc(100% - 25px) 30px 0 5px var(--primary-red);
+        }
+
+        /* --- NEW: Fixed Side Garland Decoration --- */
+        .side-garland {
+            position: fixed;
+            top: 0;
+            width: 30px;
+            height: 100%;
+            z-index: 45; /* Below the nav bar (z-50), above content (z-10) */
+            pointer-events: none; /* Allows clicks to pass through */
+            /* Fading gradient green 'rope' */
+            background: linear-gradient(to bottom, var(--primary-green) 5%, transparent 40%); 
+            
+        }
+
+        .left-garland {
+            left: 0;
+            /* Create ornaments using box-shadow offset for a hanging effect */
+            box-shadow: 
+                5px 60px 0 5px var(--primary-red),
+                -5px 150px 0 5px #FCD34D,
+                5px 240px 0 5px var(--primary-red),
+                -5px 330px 0 5px var(--primary-green),
+                5px 420px 0 5px #FCD34D;
+        }
+
+        .right-garland {
+            right: 0;
+            /* Mirror the ornaments for symmetry */
+            box-shadow: 
+                -5px 60px 0 5px var(--primary-red),
+                5px 150px 0 5px #FCD34D,
+                -5px 240px 0 5px var(--primary-red),
+                5px 330px 0 5px var(--primary-green),
+                -5px 420px 0 5px #FCD34D;
+        }
+
+#navbar-text {
+    margin-top: 12px !important;
+    font-size: 24px !important;
+}
