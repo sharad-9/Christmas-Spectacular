@@ -1,5 +1,5 @@
 # Christmas-Spectacular
-Just a simple Halloween website design using HTML, CSS and JS.
+Website for Christmas 2025 using HTML, CSS and JS with Parallax, Glassmorphism, Polymorphism, and much more!
 
 ## Watch the Live [Demo](https://ghostrider2606.github.io/Christmas-Spectacular/)
 
