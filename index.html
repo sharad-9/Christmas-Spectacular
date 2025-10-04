@@ -4,195 +4,166 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Christmas 2025 Spectacular</title>
-    <!-- Load Tailwind CSS -->
+
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="https://www.drawhipo.com/wp-content/uploads/2023/04/Christmas-Color-7-Santa-Claus-Curved.png">
-    <!-- Load Inter Font -->
+
+    <!-- Inter Font -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css" class="stylesheet">
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="style.css">
 </head>
-<body class="min-h-screen">
+<body class="min-h-screen font-[Inter] bg-gray-950 text-white">
 
-    <!-- NEW: Fixed Side Decorations (visible on desktop/tablet) -->
-    <!-- <div class="side-garland left-garland hidden sm:block"></div>
-    <div class="side-garland right-garland hidden sm:block"></div> -->
-
-    <!-- Snow Container -->
+    <!-- Snow Effect -->
     <div class="snow-container"></div>
 
-    <!-- Fixed Header Menu (Glassmorphism & Hanging Garland) -->
-    <nav class="fixed top-0 left-0 right-0 z-50 polymorphic-menu glass-card">
+    <!-- Navigation Bar -->
+    <nav class="fixed top-0 left-0 right-0 z-50 glass-card backdrop-blur-md bg-red-800/30 border-b border-white/10">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex justify-between items-center">
-            <h1 id="navbar-text" class="text-xl font-extrabold tracking-widest text-white transition-colors duration-300 hover:text-red-400">
+            <h1 class="text-xl font-extrabold tracking-widest text-white hover:text-red-400 transition-colors duration-300">
                 WINTER SOLSTICE '25
             </h1>
-            <div class="space-x-4 flex">
-                
-                <div class="hidden md:flex md:space-x-4 items-center" id="desktop-links">
-                    <a href="#countdown" id="navbar-text" class="text-sm font-medium text-white hover:text-red-500 transition-colors duration-200">Countdown</a>
-                    <a href="#traditions" id="navbar-text" class="text-sm font-medium text-white hover:text-red-500 transition-colors duration-200">Traditions</a>
-                    <a href="#gallery" id="navbar-text" class="text-sm font-medium text-white hover:text-red-500 transition-colors duration-200">Gallery</a>
+
+            <div class="flex items-center space-x-4">
+                <!-- Desktop Links -->
+                <div class="hidden md:flex md:space-x-4 items-center">
+                    <a href="#countdown" class="text-sm font-medium text-white hover:text-red-500 transition">Countdown</a>
+                    <a href="#traditions" class="text-sm font-medium text-white hover:text-red-500 transition">Traditions</a>
+                    <a href="#gallery" class="text-sm font-medium text-white hover:text-red-500 transition">Gallery</a>
                 </div>
 
+                <!-- Christmas Music -->
                 <audio id="christmas-music" loop autoplay>
-                    
-
                     <source src="/content/christmas-songs.mp3" type="audio/mpeg">
                     Your browser does not support the audio element.
                 </audio>
 
-                <button id="mute-button" class="text-white hover:text-red-500 transition-colors duration-200 ml-4 p-2 rounded-full bg-red-600/50 hover:bg-red-700/70">
-                    <!-- Icon placeholder for initial state (Volume 2/On) -->
-                    <svg id="mute-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-volume-2">
+                <!-- Mute Button -->
+                <button id="mute-button" class="text-white hover:text-red-500 transition ml-4 p-2 rounded-full bg-red-600/50 hover:bg-red-700/70">
+                    <svg id="mute-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
                         <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
                         <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
                     </svg>
                 </button>
 
-                <button id="menu-toggle" class="md:hidden text-white p-2 rounded hover:bg-white/10 transition-colors">
-                    <!-- This SVG icon changes to 'X' when clicked via JS -->
-                    <svg id="menu-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu">
+                <!-- Mobile Menu Toggle -->
+                <button id="menu-toggle" class="md:hidden text-white p-2 rounded hover:bg-white/10 transition">
+                    <svg id="menu-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <line x1="4" x2="20" y1="12" y2="12"/>
                         <line x1="4" x2="20" y1="6" y2="6"/>
                         <line x1="4" x2="20" y1="18" y2="18"/>
                     </svg>
                 </button>
-
             </div>
         </div>
 
-            <div id="mobile-menu" class="hidden md:hidden px-4 pb-4">
-                <div class="flex flex-col space-y-2 pt-2 border-t border-white/20">
-                    <a href="#countdown" class="nav-link block text-white p-2 rounded-lg bg-white/10 hover:bg-white/20 text-center transition-colors">Countdown</a>
-                    <a href="#traditions" class="nav-link block text-white p-2 rounded-lg bg-white/10 hover:bg-white/20 text-center transition-colors">Traditions</a>
-                    <a href="#gallery" class="nav-link block text-white p-2 rounded-lg bg-white/10 hover:bg-white/20 text-center transition-colors">Gallery</a>
-                </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden px-4 pb-4">
+            <div class="flex flex-col space-y-2 pt-2 border-t border-white/20">
+                <a href="#countdown" class="block text-white p-2 rounded-lg bg-white/10 hover:bg-white/20 text-center">Countdown</a>
+                <a href="#traditions" class="block text-white p-2 rounded-lg bg-white/10 hover:bg-white/20 text-center">Traditions</a>
+                <a href="#gallery" class="block text-white p-2 rounded-lg bg-white/10 hover:bg-white/20 text-center">Gallery</a>
             </div>
-
+        </div>
     </nav>
 
-    <!-- Section 1: Hero & Countdown (Deep Parallax) -->
-    <section id="countdown" class="parallax-section relative z-0">
-        <!-- Deep Background Layer -->
-        <div class="parallax-layer layer-deep-bg bg-cover bg-center">
-            <img class="absolute w-full h-full object-cover opacity-30" src="/content/christmas-snow.jpg" alt="Deep background image of a snowy forest">
-        </div>
+    <!-- Countdown Section -->
+    <section id="countdown" class="relative flex flex-col justify-center items-center min-h-screen text-center overflow-hidden">
+        <img class="absolute inset-0 w-full h-full object-cover opacity-30 -z-10" src="/content/christmas-snow.jpg" alt="Snowy background">
 
-        <!-- Midground Layer (Stars/Ornaments) -->
-        <div class="parallax-layer layer-mid-bg flex justify-around items-start pt-16">
-            <span class="text-4xl animate-pulse text-yellow-300 transform -rotate-12">🌟</span>
-            <span class="text-3xl text-red-500 transform rotate-12">🎁</span>
-        </div>
+        <div class="glass-card p-8 md:p-12 max-w-4xl mx-4">
+            <h2 class="text-5xl md:text-7xl font-bold mb-4 text-red-500">Christmas 2025 Awaits</h2>
+            <p class="text-xl md:text-2xl font-light text-gray-200 mb-8">
+                The magic returns to the world. Get ready for the festive season!
+            </p>
 
-        <!-- Foreground Layer (Content) -->
-        <div class="layer-foreground z-10 w-full flex justify-center items-center h-full pt-20">
-            <div class="glass-card p-8 md:p-12 max-w-4xl mx-4 text-center">
-                <h2 class="text-5xl md:text-7xl font-bold mb-4 text-red-500 tracking-tight">
-                    Christmas 2025 Awaits
-                </h2>
-                <p class="text-xl md:text-3xl font-light text-white mb-8">
-                    The magic returns to the world. Get ready for the festive season!
+            <div id="countdown-display" class="grid grid-cols-2 sm:grid-cols-4 gap-6 md:gap-8">
+                <div class="p-4 glass-card border-green-500">
+                    <div id="days" class="text-4xl md:text-6xl font-extrabold">00</div>
+                    <div class="text-gray-300 mt-2">Days</div>
+                </div>
+                <div class="p-4 glass-card border-red-500">
+                    <div id="hours" class="text-4xl md:text-6xl font-extrabold">00</div>
+                    <div class="text-gray-300 mt-2">Hours</div>
+                </div>
+                <div class="p-4 glass-card border-blue-500">
+                    <div id="minutes" class="text-4xl md:text-6xl font-extrabold">00</div>
+                    <div class="text-gray-300 mt-2">Minutes</div>
+                </div>
+                <div class="p-4 glass-card border-yellow-500">
+                    <div id="seconds" class="text-4xl md:text-6xl font-extrabold">00</div>
+                    <div class="text-gray-300 mt-2">Seconds</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Traditions Section -->
+    <section id="traditions" class="relative bg-gray-900 py-16">
+        <img class="absolute inset-0 w-full h-full object-cover opacity-40 -z-10" src="https://media2.giphy.com/media/v1.Y2lkPTZjMDliOTUybnByanJvcnZydW81amV1ZWU1dGU1bmxoNjcwbXg0OXNsbmFzaGpucCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/3o72FhIuVWddxQHftS/giphy.gif" alt="Cozy fireplace background">
+
+        <div class="relative z-10 grid md:grid-cols-2 gap-8 max-w-6xl mx-auto px-4">
+            <div class="glass-card p-6 md:p-8 hover:scale-[1.03] transition-transform shadow-2xl">
+                <h3 class="text-3xl font-semibold mb-4 text-green-400">The Joy of Giving</h3>
+                <p class="text-gray-200 leading-relaxed">
+                    Christmas is about shared warmth and thoughtfulness. Beyond gifts under the tree, it’s about connection and kindness — a spirit embodied by Secret Santa’s simple joy.
                 </p>
-
-                <!-- Countdown Display -->
-                <div id="countdown-display" class="grid grid-cols-2 sm:grid-cols-4 gap-4 md:gap-8 text-shadow-lg">
-                    <div class="p-4 glass-card shadow-xl border-green-500">
-                        <div class="text-4xl md:text-6xl font-extrabold text-white" id="days">00</div>
-                        <div class="text-sm md:text-lg text-gray-300 mt-2">Days</div>
-                    </div>
-                    <div class="p-4 glass-card shadow-xl border-red-500">
-                        <div class="text-4xl md:text-6xl font-extrabold text-white" id="hours">00</div>
-                        <div class="text-sm md:text-lg text-gray-300 mt-2">Hours</div>
-                    </div>
-                    <div class="p-4 glass-card shadow-xl border-blue-500">
-                        <div class="text-4xl md:text-6xl font-extrabold text-white" id="minutes">00</div>
-                        <div class="text-sm md:text-lg text-gray-300 mt-2">Minutes</div>
-                    </div>
-                    <div class="p-4 glass-card shadow-xl border-yellow-500">
-                        <div class="text-4xl md:text-6xl font-extrabold text-white" id="seconds">00</div>
-                        <div class="text-sm md:text-lg text-gray-300 mt-2">Seconds</div>
-                    </div>
-                </div>
+            </div>
+            <div class="glass-card p-6 md:p-8 hover:scale-[1.03] transition-transform shadow-2xl">
+                <h3 class="text-3xl font-semibold mb-4 text-red-400">Winter Festivities</h3>
+                <p class="text-gray-200 leading-relaxed">
+                    From carol singing to tree decorating, every tradition adds to the festive story. These rituals unite generations in joy and togetherness as the year ends.
+                </p>
             </div>
         </div>
     </section>
 
-    <!-- Section 2: Traditions & Stories (Medium Parallax) -->
-    <section id="traditions" class="parallax-section bg-gray-900 relative z-0">
-        <!-- Deep Background Layer -->
-        <div class="parallax-layer layer-deep-bg bg-cover bg-center">
-            <img class="absolute w-full h-full object-cover opacity-40" src="https://media2.giphy.com/media/v1.Y2lkPTZjMDliOTUybnByanJvcnZydW81amV1ZWU1dGU1bmxoNjcwbXg0OXNsbmFzaGpucCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/3o72FhIuVWddxQHftS/giphy.gif" alt="Deep background image of a cozy fireplace">
-        </div>
-
-        <!-- Midground Layer (Candles) -->
-        <!-- <div class="parallax-layer layer-mid-bg flex justify-end items-end p-10">
-            <div class="text-6xl animate-pulse">🕯️</div>
-        </div> -->
-
-        <!-- Foreground Layer (Content) -->
-        <div class="layer-foreground z-10 w-full py-16 flex justify-center items-center h-full">
-            <div class="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto px-4">
-                <div class="glass-card p-6 md:p-8 transform transition-transform duration-500 hover:scale-[1.03] shadow-2xl">
-                    <h3 class="text-3xl font-semibold mb-4 text-green-400">The Joy of Giving</h3>
-                    <p class="text-gray-200 leading-relaxed">
-                        Christmas is a time for shared warmth and thoughtful actions. It's about more than the gifts under the tree; it's about the connection forged by remembering those we cherish. The tradition of Secret Santa is an act of hidden kindness, spreading genuine delight without expecting recognition.
-                    </p>
-                </div>
-                <div class="glass-card p-6 md:p-8 transform transition-transform duration-500 hover:scale-[1.03] shadow-2xl">
-                    <h3 class="text-3xl font-semibold mb-4 text-red-400">Winter Festivities</h3>
-                    <p class="text-gray-200 leading-relaxed">
-                        From carol singing in the crisp winter air to decorating the Christmas tree, every ritual adds to the season's tapestry. These annual activities, repeated across generations, provide a powerful sense of continuity and comfort, anchoring us in tradition as the new year approaches.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Section 3: Gallery (No Parallax, just beautiful content) -->
+    <!-- Gallery Section -->
     <section id="gallery" class="min-h-screen bg-gray-950 flex flex-col items-center justify-center py-16">
         <h2 class="text-5xl font-extrabold mb-12 text-center text-red-500 tracking-wider">
             Photo Gallery of Cheer
         </h2>
+
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto px-4">
-            <!-- Glass-morphed Image Cards with complex CSS hover animation (Polymorphism) -->
-            <div class="gallery-item group relative overflow-hidden glass-card p-1 shadow-lg cursor-pointer">
-                <!-- Updated placeholder image URL -->
+            <div class="group relative overflow-hidden glass-card p-1 shadow-lg cursor-pointer">
                 <img class="w-full h-56 object-cover rounded-lg transition duration-500 transform group-hover:scale-105"
                      src="https://m.media-amazon.com/images/I/81WUYXaFDDL.jpg"
                      alt="Christmas Wreath">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
-                    <p class="text-white text-lg font-semibold transform translate-y-full group-hover:translate-y-0 transition-transform duration-500">Holiday Wreaths</p>
+                <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+                    <p class="text-white text-lg font-semibold translate-y-full group-hover:translate-y-0 transition-transform">Holiday Wreaths</p>
                 </div>
             </div>
 
-            <div class="gallery-item group relative overflow-hidden glass-card p-1 shadow-lg cursor-pointer">
-                <!-- Updated placeholder image URL -->
+            <div class="group relative overflow-hidden glass-card p-1 shadow-lg cursor-pointer">
                 <img class="w-full h-56 object-cover rounded-lg transition duration-500 transform group-hover:scale-105"
                      src="https://www.tasteofhome.com/wp-content/uploads/2018/01/Gingerbread-Cutout-Cookies_EXPS_SDDJ19_20072_C07_18_2b-1.jpg"
                      alt="Gingerbread House">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
-                    <p class="text-white text-lg font-semibold transform translate-y-full group-hover:translate-y-0 transition-transform duration-500">Gingerbread Fun</p>
+                <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+                    <p class="text-white text-lg font-semibold translate-y-full group-hover:translate-y-0 transition-transform">Gingerbread Fun</p>
                 </div>
             </div>
 
-            <div class="gallery-item group relative overflow-hidden glass-card p-1 shadow-lg cursor-pointer">
-                 <!-- Updated placeholder image URL -->
+            <div class="group relative overflow-hidden glass-card p-1 shadow-lg cursor-pointer">
                 <img class="w-full h-56 object-cover rounded-lg transition duration-500 transform group-hover:scale-105"
                      src="/content/christmas-snow.jpg"
                      alt="Snow Scene">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
-                    <p class="text-white text-lg font-semibold transform translate-y-full group-hover:translate-y-0 transition-transform duration-500">Peaceful Snow</p>
+                <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+                    <p class="text-white text-lg font-semibold translate-y-full group-hover:translate-y-0 transition-transform">Peaceful Snow</p>
                 </div>
             </div>
 
-            <div class="gallery-item group relative overflow-hidden glass-card p-1 shadow-lg cursor-pointer">
-                 <!-- Updated placeholder image URL -->
+            <div class="group relative overflow-hidden glass-card p-1 shadow-lg cursor-pointer">
                 <img class="w-full h-56 object-cover rounded-lg transition duration-500 transform group-hover:scale-105"
                      src="https://images.pexels.com/photos/3149896/pexels-photo-3149896.jpeg"
                      alt="Christmas Tree Lights">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
-                    <p class="text-white text-lg font-semibold transform translate-y-full group-hover:translate-y-0 transition-transform duration-500">Sparkling Lights</p>
+                <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+                    <p class="text-white text-lg font-semibold translate-y-full group-hover:translate-y-0 transition-transform">Sparkling Lights</p>
                 </div>
             </div>
         </div>
@@ -200,9 +171,10 @@
 
     <!-- Footer -->
     <footer class="py-6 bg-red-800/80 text-center text-gray-200 text-sm">
-        &copy; 2025 Christmas Spectacular. Designed with 🍵 by <a href="iambisrutpyne.github.io">Bisrut Pyne</a>.
+        &copy; 2025 Christmas Spectacular. Designed with 🍵 by <a href="https://iambisrutpyne.github.io" target="_blank" class="hover:text-white underline">Bisrut Pyne</a>.
     </footer>
 
+    <!-- Script -->
     <script src="script.js"></script>
 </body>
 </html>
